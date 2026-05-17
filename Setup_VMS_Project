@@ -1,0 +1,100 @@
++++++++++++++++++++++++++++ Build Angular Project +++++++++++++++++++++++++++ 
+
+-> Download Node JS and install. Then copy file location path - C:\Program Files\nodejs and add in Environment variables.
+		--> open cmd and check "node -v" and "npm -v" version - is these installed or not.
+		
+-> Install Angular CLI :- open terminal and run:
+		--> $ npm install -g @angular/cli  
+			--> Check installation :- $ ng version 
+			--> if getting error while installing npm then check Environment variables - npm path is added in System variables or not.
+			
+-> Go to project directory and open cmd in project folder.
+		--> npm install // build angular project
+		--> $ ng serve //Run Angular Project
+	
++++++++++++++++++++++++++++ Build Java Project +++++++++++++++++++++++++++
+
+--> first install Maven :- and check in cmd - $ mvn --version
+		--> if getting error then check Environment Paths -> Add MAVEN_HOME and PATH in Environment variables
+
+
+--> open cmd from project directory and build :-
+	--> $ npm build
+	--> $ ng build --configuration production		// this will create :- "dist/" folder     // Angular Project Build Complete
+	
+---> Install nginx on EC2
+	--> $ yum install nginx -y
+	--> $ systemctl start nginx
+	--> $ systemctl enable nginx
+	
+	
+	
+===============> I build angular project locally - dist/ folder and now i want to move this folder to EC2 instance using WinSCP software
+	--> /home/ec2-user/valuation-management-system-app/browser ===> Main Angular files are inside so Now copy them to nginx web folder.
+		--> $ sudo cp -r /home/ec2-user/valuation-management-system-app/browser/* /usr/share/nginx/html/    ==> "/usr/share/nginx/html/" this is nginx server directory so copy here project files.
+		--> $ sudo systemctl restart nginx
+		
+	
++++++++++++++++++++++++++++ AWS +++++++++++++++++++++++++++
+
+$ sudo -s
+$ yum install git -y
+$ yum install docker -y
+$ systemctl start docker  
+$ systemctl enable docker
+
+
+
+==================> Run Angular Project on Docker =======================
+
+$ systemctl start docker
+$ systemctl enable docker
+$ sudo usermod -aG docker ec2-user
+
+//// Clone project from Git
+$ git clone https://github.com/pranjalmalviya/vms-app.git
+	--> username :- amit523
+	--> password :- GitHub Token - classic
+	
+	
+	// copy /browser (/dist folder after build) to angular project - in path where docker file exists
+$ sudo chown -R ec2-user:ec2-user /home/ec2-user/vms-app
+$ chmod -R 755 /home/ec2-user/vms-app		/// give permission to copy files so that we can copy files in WinSCP
+====> Move complete "/dist" folder to EC2 instance
+
+
+//install docker compose
+$ sudo mkdir -p /usr/libexec/docker/cli-plugins/
+$ sudo curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+-o /usr/libexec/docker/cli-plugins/docker-compose
+$ sudo chmod +x /usr/libexec/docker/cli-plugins/docker-compose // give permission
+
+
+// install docker componse buildx 
+$ sudo mkdir -p /usr/libexec/docker/cli-plugins/
+$ sudo curl -L https://github.com/docker/buildx/releases/download/v0.17.1/buildx-v0.17.1.linux-amd64 \
+-o /usr/libexec/docker/cli-plugins/docker-buildx
+$ sudo chmod +x /usr/libexec/docker/cli-plugins/docker-buildx // give permission
+$ sudo systemctl restart docker // restart docker
+ 
+ 
+ --> move to project folder 
+$ docker compose build 
+$ docker compose up -d
+
+
+==================================================================================================
+JAVA application
+
+
+$ yum install maven -y ===> maven install
+
+$ git clone https://github.com/himanshux17py/valuaton-management-system.git
+	--> username :- amit523
+	--> password :- GitHub Classic Token
+
+==> change java project directory
+
+$ mvn clean package
+$ docker compose build
+$ docker compose up -d
