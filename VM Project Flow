@@ -1,0 +1,53 @@
++++++++++++++++++++++++++++ Lead Status +++++++++++++++++++++++++++ 
+
+Bank Creates Lead
+        ↓
+LEAD_CREATED
+
+Bank Assigns To Valuator
+        ↓
+ASSIGNED_TO_VALUATOR
+
+Valuator Accepts
+        ↓
+ACCEPTED_BY_VALUATOR
+
+Site Visit Not Done
+        ↓
+SITE_VISIT_PENDING
+
+Site Visit Done
+        ↓
+SITE_VISIT_COMPLETED
+
+Data Entry Pending
+        ↓
+DATA_ENTRY_PENDING
+
+Data Entry Completed
+        ↓
+DATA_ENTRY_COMPLETED
+
+QA Review Pending
+        ↓
+REVIEW_PENDING
+
+QA Review Completed
+        ↓
+REVIEW_COMPLETED
+
+Report Submitted To Bank
+        ↓
+REPORT_SUBMITTED
+
+Bank Approves
+        ↓
+REPORT_APPROVED
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++  +++++++++++++++++++++++++++
+
+Final Completion
+        ↓
+COMPLETED
