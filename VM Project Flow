@@ -43,11 +43,20 @@ REPORT_SUBMITTED
 Bank Approves
         ↓
 REPORT_APPROVED
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-+++++++++++++++++++++++++++  +++++++++++++++++++++++++++
-
+        |        
 Final Completion
         ↓
 COMPLETED
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++ If Bank Rejects Report +++++++++++++++++++++++++++
+REPORT_SUBMITTED
+        ↓
+REPORT_REJECTED
+        ↓
+REWORK_REQUIRED
+        ↓
+REPORT_SUBMITTED
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
